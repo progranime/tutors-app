@@ -16,7 +16,7 @@ const Index = () => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" color="inherit">
-                    News
+                    Tutors App
                 </Typography>
                 <Button color="inherit">Login</Button>
             </Toolbar>

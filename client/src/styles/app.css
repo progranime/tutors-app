@@ -6528,6 +6528,9 @@ input[type=range]::-ms-thumb {
 body {
   background-color: #f4f4f4; }
 
+button:focus {
+  background-color: transparent; }
+
 .absolute-center {
   position: absolute;
   top: 50%;
