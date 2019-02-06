@@ -1,0 +1,1 @@
+Can add here the query per tables of your database, to be more modular.

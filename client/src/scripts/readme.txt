@@ -1,0 +1,1 @@
+Can add here the custom javascript that you think that needed to other page

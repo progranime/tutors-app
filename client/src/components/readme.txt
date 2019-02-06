@@ -1,0 +1,1 @@
+Can add here the dumb/stateless components that only renders the element
