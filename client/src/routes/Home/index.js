@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 
+import { Container } from '../../components/Layout'
+
 export class Index extends Component {
     render() {
-        return <div>Home Route</div>
+        return <Container>Home Page</Container>
     }
 }
 
