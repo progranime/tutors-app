@@ -16,6 +16,11 @@
     &-wrapper {
     }
 
+    &--confirmation {
+        @extend .signup--centered;
+        text-align: center;
+    }
+
     &__header {
         display: flex;
         padding: $spacing;

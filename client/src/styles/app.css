@@ -6531,11 +6531,13 @@ input[type=range]::-ms-thumb {
   @media only screen and (min-width: 601px) {
     .signup {
       width: 500px; } }
-  .signup--centered {
+  .signup--centered, .signup--confirmation {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); }
+  .signup--confirmation {
+    text-align: center; }
   .signup__header {
     display: flex;
     padding: 15px; }
