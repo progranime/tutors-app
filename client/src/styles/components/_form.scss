@@ -1,16 +1,20 @@
 .signup {
     background-color: #fff;
     width: 100%;
+    margin-top: ($spacing * 2);
 
     @media #{$medium-and-up} {
         width: 500px;
+        box-shadow: 0px 3px 10px #c1c1c1;
     }
 
     &--centered {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        @media #{$medium-and-up} {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 
     &-wrapper {
@@ -52,18 +56,10 @@
 }
 
 .signin {
-    background-color: #fff;
-    width: 100%;
-
-    @media #{$medium-and-up} {
-        width: 500px;
-    }
+    @extend .signup;
 
     &--centered {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        @extend .signup--centered;
     }
 
     &__wrapper {
