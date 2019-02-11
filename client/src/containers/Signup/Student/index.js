@@ -30,7 +30,6 @@ export class Index extends Component {
                 <div className="signup__wrapper">
                     <SignupHeader backLink="/signup" title="Student Sign Up" />
                     <SignupBody>
-                        student signup
                         <form onSubmit={this.handleSubmit}>
                             <Grid container spacing={24}>
                                 <Grid item xs={12} sm={6}>
