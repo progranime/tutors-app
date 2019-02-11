@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
     AppBar,
     Toolbar,
@@ -16,9 +17,11 @@ const Index = () => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" color="inherit">
-                    Tutors App
+                    Tutor Me
                 </Typography>
-                <Button color="inherit">Login</Button>
+                <Button color="inherit" component={Link} to="/signup">
+                    Signup
+                </Button>
             </Toolbar>
         </AppBar>
     )
