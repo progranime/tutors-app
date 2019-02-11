@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Button, TextField } from '@material-ui/core'
+import ReactPhoneInput from 'react-phone-input-2'
 
 import { SignupHeader, SignupBody } from '../../../components/Core/Signup'
 
@@ -15,6 +16,12 @@ export class Index extends Component {
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value
+        })
+    }
+
+    handlePhoneChange = value => {
+        this.setState({
+            cellphone: value
         })
     }
 
@@ -78,6 +85,18 @@ export class Index extends Component {
                                         value={this.state.cellphone}
                                         onChange={this.handleChange}
                                     />
+
+                                    {/* <label htmlFor="">Cellphone Number</label>
+                                    <ReactPhoneInput
+                                        defaultCountry={'ph'}
+                                        onlyCountries={['ph']}
+                                        onChange={this.handlePhoneChange}
+                                        inputExtraProps={{
+                                            name: 'cellphone',
+                                            value: this.state.cellphone
+                                        }}
+                                        countryCodeEditable={false}
+                                    /> */}
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button
