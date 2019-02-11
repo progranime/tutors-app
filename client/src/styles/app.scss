@@ -1,8 +1,11 @@
 // third party library like bootstrap or materializecss
 @import '../../node_modules/materialize-css/sass/materialize.scss';
 
+@import './global/variable';
+
 // components
 @import './components/navbar';
+@import './components/signup';
 
 // global
 @import './global/override';
