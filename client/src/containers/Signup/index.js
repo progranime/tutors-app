@@ -36,7 +36,10 @@ export class Index extends Component {
                             I'm a student
                         </Button>
                     </SignupBody>
-                    <SignupFooter />
+                    <SignupFooter
+                        link="/signup/tutor"
+                        title="Apply to become a tutor"
+                    />
                 </div>
             </div>
         )

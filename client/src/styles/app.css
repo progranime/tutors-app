@@ -6575,10 +6575,10 @@ input[type=search]:not(.browser-default),
 textarea.materialize-textarea {
   margin: 0; }
 
-label + .MuiInput-formControl-161 {
+label + [class*='MuiInput-formControl-'] {
   margin-top: 0 !important; }
 
-.MuiFormControl-root-235 {
+[class*='MuiFormControl-root-'] {
   width: 100%; }
 
 .p-0 {

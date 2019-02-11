@@ -21,11 +21,11 @@ textarea.materialize-textarea {
 }
 
 label {
-    & + .MuiInput-formControl-161 {
+    & + [class*='MuiInput-formControl-'] {
         margin-top: 0 !important;
     }
 }
 
-.MuiFormControl-root-235 {
+[class*='MuiFormControl-root-'] {
     width: 100%;
 }
