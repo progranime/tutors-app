@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { Button } from '@material-ui/core'
 
 import {
     SignupHeader,
@@ -12,7 +14,28 @@ export class Index extends Component {
             <div className="signup signup--centered">
                 <div className="signup__wrapper">
                     <SignupHeader />
-                    <SignupBody />
+                    <SignupBody>
+                        <Button
+                            variant="outlined"
+                            component={Link}
+                            to="/signup/parent"
+                            size="large"
+                            fullWidth={true}
+                            className="p-5 mb-4"
+                        >
+                            I'm a parent/guardian
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            component={Link}
+                            to="/signup/student"
+                            size="large"
+                            fullWidth={true}
+                            className="p-5"
+                        >
+                            I'm a student
+                        </Button>
+                    </SignupBody>
                     <SignupFooter />
                 </div>
             </div>

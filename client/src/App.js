@@ -6,8 +6,10 @@ import store from './store'
 import { Navbar, Spinner } from './components/UI'
 // routes
 const Home = lazy(() => import('./routes/Home'))
-const SignIn = lazy(() => import('./routes/SignIn'))
-const SignUp = lazy(() => import('./routes/SignUp'))
+const Signin = lazy(() => import('./routes/Signin'))
+const Signup = lazy(() => import('./routes/Signup'))
+const SignupParent = lazy(() => import('./routes/Signup/Parent'))
+const SignupStudent = lazy(() => import('./routes/Signup/Student'))
 
 class App extends Component {
     render() {
@@ -28,13 +30,27 @@ class App extends Component {
                                 <Route
                                     exact
                                     path="/signin"
-                                    component={props => <SignIn {...props} />}
+                                    component={props => <Signin {...props} />}
                                 />
 
                                 <Route
                                     exact
                                     path="/signup"
-                                    component={props => <SignUp {...props} />}
+                                    component={props => <Signup {...props} />}
+                                />
+                                <Route
+                                    exact
+                                    path="/signup/parent"
+                                    component={props => (
+                                        <SignupParent {...props} />
+                                    )}
+                                />
+                                <Route
+                                    exact
+                                    path="/signup/student"
+                                    component={props => (
+                                        <SignupStudent {...props} />
+                                    )}
                                 />
                             </Switch>
                         </Suspense>

@@ -1,7 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const Index = () => {
-    return <div className="signup__body">Body</div>
+const Index = ({ children }) => {
+    return <div className="signup__body">{children}</div>
+}
+
+Index.propTypes = {
+    children: PropTypes.node.isRequired
 }
 
 export default Index

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 
-const Index = ({ backLink, title, loginLink }) => {
+const Index = ({ backLink, title, signinLink }) => {
     return (
         <div className="signup__header">
             <div className="signup__header-wrapper">
@@ -18,7 +18,7 @@ const Index = ({ backLink, title, loginLink }) => {
             <div className="signup__header-wrapper">
                 <Button
                     component={Link}
-                    to={loginLink}
+                    to={signinLink}
                     variant="outlined"
                     color="primary"
                 >
@@ -32,13 +32,13 @@ const Index = ({ backLink, title, loginLink }) => {
 Index.defaultProps = {
     backLink: '/',
     title: 'Sign up',
-    loginLink: '/login'
+    signinLink: '/signin'
 }
 
 Index.propTypes = {
     backLink: PropTypes.string,
     title: PropTypes.string,
-    loginLink: PropTypes.string
+    signinLink: PropTypes.string
 }
 
 export default Index
