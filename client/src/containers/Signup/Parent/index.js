@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Grid, Button } from '@material-ui/core'
+import { Grid, Button, TextField } from '@material-ui/core'
 
 import { SignupHeader, SignupBody } from '../../../components/Core/Signup'
-import { FormInput } from '../../../components/UI'
 
 export class Index extends Component {
     state = {
@@ -33,7 +32,7 @@ export class Index extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <Grid container spacing={24}>
                                 <Grid item xs={12} sm={6}>
-                                    <FormInput
+                                    <TextField
                                         id="firstName"
                                         label="First Name"
                                         name="firstName"
@@ -42,7 +41,7 @@ export class Index extends Component {
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <FormInput
+                                    <TextField
                                         id="lastName"
                                         label="Last Name"
                                         name="lastName"
@@ -52,7 +51,7 @@ export class Index extends Component {
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <FormInput
+                                    <TextField
                                         id="email"
                                         label="Email Address"
                                         name="email"
@@ -62,7 +61,7 @@ export class Index extends Component {
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <FormInput
+                                    <TextField
                                         id="password"
                                         label="Create a password"
                                         name="password"
@@ -72,7 +71,7 @@ export class Index extends Component {
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <FormInput
+                                    <TextField
                                         id="cellphone"
                                         label="Cellphone Number"
                                         name="cellphone"
