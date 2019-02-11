@@ -6,7 +6,7 @@ import store from './store'
 import { Navbar, Spinner } from './components/UI'
 // routes
 const Home = lazy(() => import('./routes/Home'))
-// const Signin = lazy(() => import('./routes/Signin'))
+const Signin = lazy(() => import('./routes/Signin'))
 const Signup = lazy(() => import('./routes/Signup'))
 const SignupParent = lazy(() => import('./routes/Signup/Parent'))
 const SignupStudent = lazy(() => import('./routes/Signup/Student'))
@@ -29,11 +29,11 @@ class App extends Component {
                                     component={props => <Home {...props} />}
                                 />
 
-                                {/* <Route
+                                <Route
                                     exact
                                     path="/signin"
                                     component={props => <Signin {...props} />}
-                                />*/}
+                                />
 
                                 <Route
                                     exact

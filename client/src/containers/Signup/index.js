@@ -13,7 +13,7 @@ export class Index extends Component {
         return (
             <div className="signup signup--centered">
                 <div className="signup__wrapper">
-                    <SignupHeader />
+                    <SignupHeader backLink="/signin" />
                     <SignupBody>
                         <Button
                             variant="outlined"

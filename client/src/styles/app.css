@@ -6525,9 +6525,6 @@ input[type=range]::-ms-thumb {
     text-align: center;
     margin-top: 1.2rem; } }
 
-body {
-  background-color: #f4f4f4; }
-
 .signup {
   background-color: #fff;
   width: 100%; }
@@ -6556,6 +6553,30 @@ body {
   .signup__footer {
     padding: 15px;
     text-align: center; }
+
+.signin {
+  background-color: #fff;
+  width: 100%; }
+  @media only screen and (min-width: 601px) {
+    .signin {
+      width: 500px; } }
+  .signin--centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+  .signin__header {
+    padding: 15px; }
+    .signin__header-wrapper .title {
+      margin: 0;
+      text-align: center;
+      font-weight: 500;
+      font-size: 20px; }
+  .signin__body {
+    padding: 15px; }
+
+body {
+  background-color: #f4f4f4; }
 
 button:focus {
   background-color: transparent; }
