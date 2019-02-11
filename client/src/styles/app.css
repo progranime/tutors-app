@@ -6575,9 +6575,6 @@ input[type=search]:not(.browser-default),
 textarea.materialize-textarea {
   margin: 0; }
 
-label + [class*='MuiInput-formControl-'] {
-  margin-top: 0 !important; }
-
 [class*='MuiFormControl-root-'] {
   width: 100%; }
 

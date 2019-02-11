@@ -11,6 +11,7 @@ const Signup = lazy(() => import('./routes/Signup'))
 const SignupParent = lazy(() => import('./routes/Signup/Parent'))
 const SignupStudent = lazy(() => import('./routes/Signup/Student'))
 const SignupTutor = lazy(() => import('./routes/Signup/Tutor'))
+const SignupTutorForm = lazy(() => import('./routes/Signup/Tutor/Form'))
 
 class App extends Component {
     render() {
@@ -32,8 +33,8 @@ class App extends Component {
                                     exact
                                     path="/signin"
                                     component={props => <Signin {...props} />}
-                                />
- */}
+                                />*/}
+
                                 <Route
                                     exact
                                     path="/signup"
@@ -59,6 +60,14 @@ class App extends Component {
                                     path="/signup/tutor"
                                     component={props => (
                                         <SignupTutor {...props} />
+                                    )}
+                                />
+
+                                <Route
+                                    exact
+                                    path="/signup/tutor/form"
+                                    component={props => (
+                                        <SignupTutorForm {...props} />
                                     )}
                                 />
                             </Switch>

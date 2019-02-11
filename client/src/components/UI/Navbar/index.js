@@ -17,7 +17,7 @@ const Index = () => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" color="inherit">
-                    Tutor Me
+                    TutorMe
                 </Typography>
                 <Button color="inherit" component={Link} to="/signup">
                     Signup

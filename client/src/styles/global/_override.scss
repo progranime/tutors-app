@@ -22,7 +22,7 @@ textarea.materialize-textarea {
 
 label {
     & + [class*='MuiInput-formControl-'] {
-        margin-top: 0 !important;
+        // margin-top: 0 !important;
     }
 }
 
