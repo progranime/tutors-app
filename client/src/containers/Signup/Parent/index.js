@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Grid, Button, TextField } from '@material-ui/core'
-import ReactPhoneInput from 'react-phone-input-2'
+import { connect } from 'react-redux'
+// import ReactPhoneInput from 'react-phone-input-2'
 
 import { SignupHeader, SignupBody } from '../../../components/Core/Signup'
+import { signup } from '../../../actions/authActions'
 
 export class Index extends Component {
     state = {
@@ -10,7 +12,8 @@ export class Index extends Component {
         lastName: '',
         email: '',
         password: '',
-        cellphone: ''
+        cellphone: '',
+        userTypeId: '1'
     }
 
     handleChange = e => {
@@ -27,7 +30,8 @@ export class Index extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log(this.state)
+        // pass an action to signup
+        this.props.signup(this.state)
     }
 
     render() {
@@ -117,4 +121,13 @@ export class Index extends Component {
     }
 }
 
-export default Index
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = {
+    signup
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Index)
