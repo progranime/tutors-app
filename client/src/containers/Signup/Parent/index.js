@@ -31,7 +31,8 @@ export class Index extends Component {
     handleSubmit = e => {
         e.preventDefault()
         // pass an action to signup
-        this.props.signup(this.state)
+        // console.log()
+        this.props.signup(this.state, this.props.history)
     }
 
     render() {
@@ -76,8 +77,10 @@ export class Index extends Component {
                                         id="password"
                                         label="Create a password"
                                         name="password"
+                                        type="password"
                                         value={this.state.password}
                                         onChange={this.handleChange}
+                                        autoComplete="password"
                                     />
                                 </Grid>
 

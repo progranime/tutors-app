@@ -1,1 +1,1 @@
-export const GET_SAMPLE = 'GET_SAMPLE'
+export const GET_ERROR = 'GET_ERROR'
