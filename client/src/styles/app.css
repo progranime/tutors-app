@@ -6573,6 +6573,9 @@ input[type=range]::-ms-thumb {
 body {
   background-color: #f4f4f4; }
 
+.navbar-drawer [class*='MuiPaper-root-'] {
+  width: 250px; }
+
 button:focus {
   background-color: transparent; }
 
