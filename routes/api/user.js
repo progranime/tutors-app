@@ -4,8 +4,13 @@ const router = express.Router()
 // load models
 const user = require('../../models/user')
 
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
     const result = await user.store(req.body)
+    return res.json(result)
+})
+
+router.post('/signin', async (req, res) => {
+    const result = await user.verifyUser(req.body)
     return res.json(result)
 })
 

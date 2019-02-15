@@ -21,7 +21,7 @@
         "redux-thunk": "^2.3.0"
     },
     "scripts": {
-        "start-js": "react-scripts start",
+        "start-js": "set PORT=3002 && react-scripts start",
         "start": "npm-run-all -p watch-css start-js",
         "build": "npm run build-css && react-scripts build",
         "build-css": "node-sass-chokidar src/ -o src/",

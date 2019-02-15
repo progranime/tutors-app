@@ -50,6 +50,31 @@ const self = {
                 })
             })
         })
+    },
+    verifyUser: data => {
+        let GET = `SELECT * FROM user WHERE email = ? AND password = ?`
+        let formData = {
+            email: data.email,
+            password: data.password
+        }
+
+        console.log(formData)
+
+        return new Promise(resolve => {
+            db.getConnection((err, connection) => {
+                if (err) console.log(err)
+
+                connection.query(
+                    GET,
+                    [formData.email, formData.password],
+                    (err, results) => {
+                        if (err) console.log(err)
+                        resolve(results)
+                        connection.release()
+                    }
+                )
+            })
+        })
     }
 }
 

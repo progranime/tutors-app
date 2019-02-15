@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Grid, Button, TextField } from '@material-ui/core'
+import { connect } from 'react-redux'
 
 import Signin from '../../components/Core/Signin'
+import { signin } from '../../actions/authActions'
 
 export class Index extends Component {
     state = {
@@ -17,7 +20,7 @@ export class Index extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log(this.state)
+        this.props.signin(this.state)
     }
 
     render() {
@@ -40,6 +43,7 @@ export class Index extends Component {
                                     id="password"
                                     label="Password"
                                     name="password"
+                                    type="password"
                                     value={this.state.password}
                                     onChange={this.handleChange}
                                 />
@@ -62,4 +66,17 @@ export class Index extends Component {
     }
 }
 
-export default Index
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = {
+    signin
+}
+
+Index.propTypes = {
+    signin: PropTypes.func.isRequired
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Index)

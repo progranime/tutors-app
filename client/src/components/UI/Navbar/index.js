@@ -9,7 +9,10 @@ import {
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 
-const Index = () => {
+import { connect } from 'react-redux'
+import { signout } from '../../../actions/authActions'
+
+const Index = props => {
     return (
         <AppBar position="static">
             <Toolbar>
@@ -19,12 +22,25 @@ const Index = () => {
                 <Typography variant="h6" color="inherit">
                     TutorMe
                 </Typography>
+                <Button color="inherit" component={Link} to="/signin">
+                    Sign In
+                </Button>
                 <Button color="inherit" component={Link} to="/signup">
-                    Signup
+                    Sign Up
+                </Button>
+                <Button color="inherit" onClick={props.signout}>
+                    Sign Out
                 </Button>
             </Toolbar>
         </AppBar>
     )
 }
 
-export default Index
+const mapDispatchToProps = {
+    signout
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Index)
