@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Grid, Button, TextField } from '@material-ui/core'
 
 import { SignupHeader, SignupBody } from '../../../components/Core/Signup'
+import { connect } from 'react-redux'
+import { signup } from '../../../actions/authActions'
 
 export class Index extends Component {
     state = {
@@ -10,7 +13,8 @@ export class Index extends Component {
         email: '',
         password: '',
         cellphone: '',
-        birthDate: ''
+        birthDate: '',
+        userTypeId: 2
     }
 
     handleChange = e => {
@@ -21,7 +25,7 @@ export class Index extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log(this.state)
+        this.props.signup(this.state, this.props.history)
     }
 
     render() {
@@ -66,6 +70,8 @@ export class Index extends Component {
                                         id="password"
                                         label="Create a password"
                                         name="password"
+                                        type="password"
+                                        autoComplete="password"
                                         value={this.state.password}
                                         onChange={this.handleChange}
                                     />
@@ -111,4 +117,17 @@ export class Index extends Component {
     }
 }
 
-export default Index
+Index.propTypes = {
+    signup: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = {
+    signup
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Index)

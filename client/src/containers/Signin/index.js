@@ -44,6 +44,7 @@ export class Index extends Component {
                                     label="Password"
                                     name="password"
                                     type="password"
+                                    autoComplete="password"
                                     value={this.state.password}
                                     onChange={this.handleChange}
                                 />

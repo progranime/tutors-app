@@ -10,6 +10,7 @@ const self = {
             email: data.email,
             password: data.password,
             cellphone: data.cellphone,
+            birth_date: data.birthDate || '',
             user_type_id: data.userTypeId
         }
 
@@ -57,8 +58,6 @@ const self = {
             email: data.email,
             password: data.password
         }
-
-        console.log(formData)
 
         return new Promise(resolve => {
             db.getConnection((err, connection) => {

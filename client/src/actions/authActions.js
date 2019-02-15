@@ -13,7 +13,7 @@ export const signup = (payload, history) => dispatch => {
 
     axios(axiosOptions).then(res => {
         if (!res.data.error) {
-            console.log('successfully login')
+            console.log('successfully signup')
             // redirect to login page
             history.push('/signin')
         } else {
