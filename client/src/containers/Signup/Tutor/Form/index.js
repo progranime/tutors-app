@@ -22,7 +22,8 @@ export class Index extends Component {
         email: '',
         university: '',
         password: '',
-        userTypeId: 3
+        userTypeId: 3,
+        universityLabel: ''
     }
 
     handleChange = e => {
@@ -38,9 +39,18 @@ export class Index extends Component {
 
     componentDidMount() {
         const searchQuery = queryString.parse(this.props.location.search)
-        this.setState({
-            userTypeId: searchQuery.type === 'graduated' ? 4 : 3
-        })
+
+        if (searchQuery.type === 'graduated') {
+            this.setState({
+                userTypeId: 4,
+                universityLabel: `Which university did you graduate from?`
+            })
+        } else {
+            this.setState({
+                userTypeId: 3,
+                universityLabel: `Which university are you studying at?`
+            })
+        }
 
         // get all university
         this.props.getAllUniversity()
@@ -59,7 +69,7 @@ export class Index extends Component {
 
         return (
             <FormControl>
-                <InputLabel>University</InputLabel>
+                <InputLabel>{this.state.universityLabel}</InputLabel>
                 <Select
                     value={this.state.university}
                     onChange={this.handleChange}
