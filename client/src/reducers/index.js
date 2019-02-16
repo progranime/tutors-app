@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import profileReducer from './profileReducer'
+import userReducer from './userReducer'
 import errorReducer from './errorReducer'
 
 export default combineReducers({
-    profile: profileReducer,
+    user: userReducer,
     error: errorReducer
 })

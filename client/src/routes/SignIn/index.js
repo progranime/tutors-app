@@ -7,7 +7,7 @@ export class Index extends Component {
     render() {
         return (
             <Container>
-                <Signin />
+                <Signin history={this.props.history} />
             </Container>
         )
     }

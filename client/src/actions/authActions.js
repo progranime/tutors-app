@@ -3,6 +3,7 @@ import axios from 'axios'
 import { GET_ERROR } from './types'
 import { saveState } from '../store/localStorage'
 import config from '../config'
+import { getUserSession } from './userActions'
 
 export const signup = (payload, history) => dispatch => {
     const axiosOptions = {
@@ -30,15 +31,13 @@ export const signup = (payload, history) => dispatch => {
 }
 
 export const signin = payload => dispatch => {
-    console.log('signin', payload)
-
     const axiosOptions = {
         method: 'post',
         url: `/api/user/signin`,
         data: payload
     }
 
-    axios(axiosOptions).then(res => {
+    axios(axiosOptions).then(async res => {
         if (!res.data.length) {
             dispatch({
                 type: GET_ERROR,
@@ -49,10 +48,8 @@ export const signin = payload => dispatch => {
             return
         }
 
-        // change the value that will be save to the localstorage
-        let sessionData = {
-            email: payload.email
-        }
+        // get the data of the user
+        let sessionData = await dispatch(getUserSession(payload))
 
         // add user data to localStorage
         saveState(config.sessionName, sessionData)

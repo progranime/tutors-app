@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 import { Navbar, Spinner } from './components/UI'
+import { PrivateRoute } from './components/Utilities'
 // routes
 const Home = lazy(() => import('./routes/Home'))
 const Signin = lazy(() => import('./routes/SignIn/index'))
@@ -24,7 +25,7 @@ class App extends Component {
                             <Navbar />
 
                             <Switch>
-                                <Route
+                                <PrivateRoute
                                     exact
                                     path="/"
                                     component={props => <Home {...props} />}

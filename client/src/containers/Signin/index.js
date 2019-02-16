@@ -20,7 +20,7 @@ export class Index extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.signin(this.state)
+        this.props.signin(this.state, this.props.history)
     }
 
     render() {

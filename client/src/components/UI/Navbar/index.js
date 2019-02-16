@@ -1,20 +1,17 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import {
     AppBar,
     Toolbar,
     IconButton,
     Typography,
-    Button,
-    SwipeableDrawer,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Divider
+    Button
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-
 import { connect } from 'react-redux'
+
+import { loadState } from '../../../store/localStorage'
+import config from '../../../config'
 import { signout } from '../../../actions/authActions'
 
 const Index = props => {
@@ -28,46 +25,36 @@ const Index = props => {
                     <Typography variant="h6" color="inherit">
                         TutorMe
                     </Typography>
-                    <Button color="inherit" component={Link} to="/signin">
-                        Sign In
-                    </Button>
-                    <Button color="inherit" component={Link} to="/signup">
-                        Sign Up
-                    </Button>
-                    <Button color="inherit" onClick={props.signout}>
-                        Sign Out
-                    </Button>
+
+                    {!loadState(config.sessionName) ? (
+                        <Fragment>
+                            <Button
+                                color="inherit"
+                                component={Link}
+                                to="/signin"
+                            >
+                                Sign In
+                            </Button>
+                            <Button
+                                color="inherit"
+                                component={Link}
+                                to="/signup"
+                            >
+                                Sign Up
+                            </Button>
+                        </Fragment>
+                    ) : (
+                        <Fragment>
+                            <div>
+                                Hi {loadState(config.sessionName).first_name}!
+                            </div>
+                            <Button color="inherit" onClick={props.signout}>
+                                Sign Out
+                            </Button>
+                        </Fragment>
+                    )}
                 </Toolbar>
             </AppBar>
-            {/* <SwipeableDrawer
-                open={true}
-                onClose={() => {}}
-                onOpen={() => {}}
-                className="navbar-drawer"
-            >
-                <ListItem>
-                    <ListItemText primary="TutorMe" />
-                </ListItem>
-                <Divider />
-                <ListItem button>
-                    <ListItemIcon>
-                        <MenuIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Home" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <MenuIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Sign In" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <MenuIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Sign Out" />
-                </ListItem>
-            </SwipeableDrawer> */}
         </div>
     )
 }
