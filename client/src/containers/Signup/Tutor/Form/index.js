@@ -8,6 +8,7 @@ import {
     MenuItem,
     InputLabel
 } from '@material-ui/core'
+import queryString from 'query-string'
 
 import { SignupHeader, SignupBody } from '../../../../components/Core/Signup'
 
@@ -17,7 +18,8 @@ export class Index extends Component {
         lastName: '',
         email: '',
         university: '',
-        password: ''
+        password: '',
+        userTypeId: 3
     }
 
     handleChange = e => {
@@ -29,6 +31,13 @@ export class Index extends Component {
     handleSubmit = e => {
         e.preventDefault()
         console.log(this.state)
+    }
+
+    componentDidMount() {
+        const searchQuery = queryString.parse(this.props.location.search)
+        this.setState({
+            userTypeId: searchQuery.type === 'graduated' ? 4 : 3
+        })
     }
 
     render() {

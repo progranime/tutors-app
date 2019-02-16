@@ -7,7 +7,7 @@ export class Index extends Component {
     render() {
         return (
             <Container>
-                <SignupTutorForm />
+                <SignupTutorForm {...this.props} />
             </Container>
         )
     }
