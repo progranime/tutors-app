@@ -20,7 +20,13 @@ export class Index extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.signin(this.state, this.props.history)
+        this.props.signin(
+            {
+                email: this.state.email,
+                password: this.state.password
+            },
+            this.props.history
+        )
     }
 
     render() {
@@ -50,6 +56,13 @@ export class Index extends Component {
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                {this.props.error.message && (
+                                    <div className="red-text">
+                                        {this.props.error.message}
+                                    </div>
+                                )}
+                            </Grid>
+                            <Grid item xs={12}>
                                 <Button
                                     type="submit"
                                     variant="outlined"
@@ -67,7 +80,9 @@ export class Index extends Component {
     }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    error: state.error
+})
 
 const mapDispatchToProps = {
     signin

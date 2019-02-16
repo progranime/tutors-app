@@ -49,8 +49,8 @@ const Index = props => {
                                 </Fragment>
                             ) : (
                                 <Fragment>
-                                    <Button>
-                                        Hi{' '}
+                                    <Button className="white-text">
+                                        Hi,
                                         {
                                             loadState(config.sessionName)
                                                 .first_name

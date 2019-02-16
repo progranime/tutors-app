@@ -1,7 +1,8 @@
 import { GET_USER, GET_USER_SESSION } from '../actions/types'
 
 const initialState = {
-    profile: {}
+    profile: {},
+    loading: false
 }
 
 const userReducer = (state = initialState, { type, payload }) => {
