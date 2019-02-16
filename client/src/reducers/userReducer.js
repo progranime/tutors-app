@@ -1,4 +1,4 @@
-import { GET_USER } from '../actions/types'
+import { GET_USER, GET_USER_SESSION } from '../actions/types'
 
 const initialState = {
     profile: {}
@@ -6,7 +6,7 @@ const initialState = {
 
 const userReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case GET_USER:
+        case GET_USER || GET_USER_SESSION:
             return {
                 ...state,
                 profile: payload
