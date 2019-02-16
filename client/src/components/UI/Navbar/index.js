@@ -5,7 +5,8 @@ import {
     Toolbar,
     IconButton,
     Typography,
-    Button
+    Button,
+    Grid
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { connect } from 'react-redux'
@@ -19,40 +20,53 @@ const Index = props => {
         <div>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton color="inherit" aria-label="Menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" color="inherit">
-                        TutorMe
-                    </Typography>
-
-                    {!loadState(config.sessionName) ? (
-                        <Fragment>
-                            <Button
-                                color="inherit"
-                                component={Link}
-                                to="/signin"
-                            >
-                                Sign In
-                            </Button>
-                            <Button
-                                color="inherit"
-                                component={Link}
-                                to="/signup"
-                            >
-                                Sign Up
-                            </Button>
-                        </Fragment>
-                    ) : (
-                        <Fragment>
-                            <div>
-                                Hi {loadState(config.sessionName).first_name}!
-                            </div>
-                            <Button color="inherit" onClick={props.signout}>
-                                Sign Out
-                            </Button>
-                        </Fragment>
-                    )}
+                    <Grid justify="space-between" container spacing={24}>
+                        <Grid item>
+                            <Typography variant="h6" color="inherit">
+                                <IconButton color="inherit" aria-label="Menu">
+                                    <MenuIcon />
+                                </IconButton>
+                                TutorMe
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            {!loadState(config.sessionName) ? (
+                                <Fragment>
+                                    <Button
+                                        color="inherit"
+                                        component={Link}
+                                        to="/signin"
+                                    >
+                                        Sign In
+                                    </Button>
+                                    <Button
+                                        color="inherit"
+                                        component={Link}
+                                        to="/signup"
+                                    >
+                                        Sign Up
+                                    </Button>
+                                </Fragment>
+                            ) : (
+                                <Fragment>
+                                    <Button>
+                                        Hi{' '}
+                                        {
+                                            loadState(config.sessionName)
+                                                .first_name
+                                        }
+                                        !
+                                    </Button>
+                                    <Button
+                                        color="inherit"
+                                        onClick={props.signout}
+                                    >
+                                        Sign Out
+                                    </Button>
+                                </Fragment>
+                            )}
+                        </Grid>
+                    </Grid>
                 </Toolbar>
             </AppBar>
         </div>
