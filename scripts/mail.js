@@ -49,7 +49,7 @@ const self = {
 
         let html = `
             <h1>This is to confirm your email</h1>
-            <p>Please click <a href="http://localhost:3002/signup/confirmation?token=${
+            <p>Please click <a href="https://blooming-gorge-48168.herokuapp.com/signup/confirmation?token=${
                 userData[0].token
             }&id=${
             userData[0].id
