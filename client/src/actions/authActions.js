@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GET_ERROR, CREATE_EMAIL_CONFIRMATION } from './types'
+import { GET_ERROR } from './types'
 import { saveState } from '../store/localStorage'
 import config from '../config'
 import { getUserSession } from './userActions'
