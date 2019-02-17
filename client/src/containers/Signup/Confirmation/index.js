@@ -5,11 +5,32 @@ import { connect } from 'react-redux'
 import { SignupConfirmation } from '../../../components/Core/Signup'
 import config from '../../../config'
 import { loadState } from '../../../store/localStorage'
-import { createEmailConfirmation } from '../../../actions/authActions'
+import {
+    createEmailConfirmation,
+    activateEmail
+} from '../../../actions/authActions'
+import queryString from 'query-string'
 
 export class Index extends Component {
     handleResendEmail = () => {
         this.props.createEmailConfirmation(loadState(config.confirmationEmail))
+    }
+
+    componentDidMount() {
+        // check if have token and id params
+        // if have confirm the email and redirect it to the signin page
+        const searchQuery = queryString.parse(this.props.location.search)
+
+        if (searchQuery.token !== '' && searchQuery.id !== '') {
+            // activate the email
+            this.props.activateEmail(
+                {
+                    id: searchQuery.id,
+                    token: searchQuery.token
+                },
+                this.props.history
+            )
+        }
     }
 
     render() {
@@ -27,7 +48,8 @@ export class Index extends Component {
 
 Index.propTypes = {
     auth: PropTypes.object.isRequired,
-    createEmailConfirmation: PropTypes.func.isRequired
+    createEmailConfirmation: PropTypes.func.isRequired,
+    activateEmail: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -35,7 +57,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    createEmailConfirmation
+    createEmailConfirmation,
+    activateEmail
 }
 
 export default connect(

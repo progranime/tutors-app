@@ -95,6 +95,28 @@ const self = {
                 )
             })
         })
+    },
+    activateEmail: data => {
+        let UPDATE = `UPDATE user SET ? WHERE id = ? AND token = ?`
+        let formData = {
+            is_activate: 1
+        }
+
+        return new Promise(resolve => {
+            db.getConnection((err, connection) => {
+                if (err) console.log(err)
+
+                connection.query(
+                    UPDATE,
+                    [formData, data.id, data.token],
+                    (err, result) => {
+                        if (err) console.log(err)
+                        resolve(result)
+                        connection.release()
+                    }
+                )
+            })
+        })
     }
 }
 

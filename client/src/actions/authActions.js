@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-import { GET_ERROR, CREATE_EMAIL_CONFIRMATION } from './types'
+import {
+    GET_ERROR,
+    CREATE_EMAIL_CONFIRMATION,
+    CREATE_ACTIVATE_EMAIL
+} from './types'
 import { saveState } from '../store/localStorage'
 import config from '../config'
 import { getUserSession } from './userActions'
@@ -89,5 +93,24 @@ export const createEmailConfirmation = payload => dispatch => {
             type: CREATE_EMAIL_CONFIRMATION,
             payload
         })
+    })
+}
+
+export const activateEmail = (payload, history) => dispatch => {
+    const axiosOptions = {
+        method: 'put',
+        url: `/api/mail/activate`,
+        data: payload
+    }
+
+    axios(axiosOptions).then(res => {
+        dispatch({
+            type: CREATE_ACTIVATE_EMAIL,
+            payload: {
+                message: `Email Activated!`
+            }
+        })
+
+        history.push('/signin')
     })
 }
