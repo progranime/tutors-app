@@ -28,7 +28,8 @@ const self = {
             password: data.password,
             cellphone: data.cellphone,
             birth_date: data.birthDate || '',
-            user_type_id: data.userTypeId
+            user_type_id: data.userTypeId,
+            is_activate: data.isActivate || 0
         }
 
         // check if the email is existing
@@ -70,10 +71,11 @@ const self = {
         })
     },
     verifyUser: data => {
-        let GET = `SELECT * FROM user WHERE email = ? AND password = ?`
+        let GET = `SELECT * FROM user WHERE (email = ? AND password = ?) AND (is_activate = ?)`
         let formData = {
             email: data.email,
-            password: data.password
+            password: data.password,
+            is_activate: 1
         }
 
         return new Promise(resolve => {
@@ -82,7 +84,7 @@ const self = {
 
                 connection.query(
                     GET,
-                    [formData.email, formData.password],
+                    [formData.email, formData.password, formData.is_activate],
                     (err, results) => {
                         if (err) console.log(err)
                         resolve(results)

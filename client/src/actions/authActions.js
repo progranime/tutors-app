@@ -42,7 +42,8 @@ export const signin = payload => dispatch => {
             dispatch({
                 type: GET_ERROR,
                 payload: {
-                    message: 'Please input correct credentials'
+                    message:
+                        'Please input correct credentials / Confirm your email first'
                 }
             })
             return

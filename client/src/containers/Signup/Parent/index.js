@@ -13,7 +13,7 @@ export class Index extends Component {
         email: '',
         password: '',
         cellphone: '',
-        userTypeId: '1'
+        userTypeId: 1
     }
 
     handleChange = e => {
@@ -105,6 +105,14 @@ export class Index extends Component {
                                         countryCodeEditable={false}
                                     /> */}
                                 </Grid>
+
+                                <Grid item xs={12}>
+                                    {this.props.error.message && (
+                                        <p className="red-text">
+                                            {this.props.error.message}
+                                        </p>
+                                    )}
+                                </Grid>
                                 <Grid item xs={12}>
                                     <Button
                                         type="submit"
@@ -124,7 +132,9 @@ export class Index extends Component {
     }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    error: state.error
+})
 
 const mapDispatchToProps = {
     signup
