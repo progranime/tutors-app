@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 import { SignupConfirmation } from '../../../components/Core/Signup'
 import config from '../../../config'
