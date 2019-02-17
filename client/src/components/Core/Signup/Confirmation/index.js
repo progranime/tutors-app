@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from '@material-ui/core'
 
-const Index = ({ firstName, email }) => {
+const Index = ({ firstName, email, resendEmail }) => {
     return (
         <div className="signup signup--confirmation">
             <div className="signup__wrapper">
@@ -19,7 +19,7 @@ const Index = ({ firstName, email }) => {
                     <p>
                         Haven't gotten an email?
                         <br />
-                        <Link>Click to resend</Link>
+                        <Link onClick={resendEmail}>Click to resend</Link>
                     </p>
                 </div>
             </div>
