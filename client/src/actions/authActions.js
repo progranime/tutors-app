@@ -18,7 +18,6 @@ export const signup = (payload, history) => dispatch => {
 
     axios(axiosOptions).then(res => {
         if (!res.data.error) {
-            console.log('successfully signup')
             let emailConfirmation = {
                 firstName: payload.firstName,
                 email: payload.email
@@ -31,7 +30,6 @@ export const signup = (payload, history) => dispatch => {
             // need to confirm it to your email
             history.push('/signup/confirmation')
         } else {
-            console.log('error bro')
             // show error message
             dispatch({
                 type: GET_ERROR,
@@ -73,15 +71,12 @@ export const signin = payload => dispatch => {
 }
 
 export const signout = payload => dispatch => {
-    console.log('signout')
     localStorage.clear()
     // redirect to sign in page
     window.location.href = '/signin'
 }
 
 export const createEmailConfirmation = payload => dispatch => {
-    console.log('send email confirmation')
-
     const axiosOptions = {
         url: `/api/mail/confirmation`,
         method: 'post',
