@@ -21,7 +21,7 @@ export class Index extends Component {
         // if have confirm the email and redirect it to the signin page
         const searchQuery = queryString.parse(this.props.location.search)
 
-        if (searchQuery.token !== '' && searchQuery.id !== '') {
+        if (searchQuery.token !== undefined && searchQuery.id !== undefined) {
             // activate the email
             this.props.activateEmail(
                 {
