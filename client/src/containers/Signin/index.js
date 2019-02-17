@@ -42,6 +42,7 @@ export class Index extends Component {
                                     name="email"
                                     value={this.state.email}
                                     onChange={this.handleChange}
+                                    fullWidth
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -53,6 +54,7 @@ export class Index extends Component {
                                     autoComplete="password"
                                     value={this.state.password}
                                     onChange={this.handleChange}
+                                    fullWidth
                                 />
                             </Grid>
                             <Grid item xs={12}>
