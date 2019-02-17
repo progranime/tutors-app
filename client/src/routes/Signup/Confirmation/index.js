@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { Container } from '../../../components/Layout'
-import { SignupConfirmation } from '../../../components/Core/Signup'
+import SignupConfirmation from '../../../containers/Signup/Confirmation'
 
 export class Index extends Component {
     render() {

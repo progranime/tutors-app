@@ -1,3 +1,4 @@
 export default {
-    sessionName: 'userSession'
+    sessionName: 'userSession',
+    confirmationEmail: 'confirmationEmail'
 }
