@@ -40,6 +40,7 @@ export class Index extends Component {
                                     id="email"
                                     label="Email"
                                     name="email"
+                                    fullWidth
                                     value={this.state.email}
                                     onChange={this.handleChange}
                                 />
@@ -51,6 +52,7 @@ export class Index extends Component {
                                     name="password"
                                     type="password"
                                     autoComplete="password"
+                                    fullWidth
                                     value={this.state.password}
                                     onChange={this.handleChange}
                                 />

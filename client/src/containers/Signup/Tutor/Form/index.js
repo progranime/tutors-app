@@ -68,7 +68,7 @@ export class Index extends Component {
             })
 
         return (
-            <FormControl>
+            <FormControl fullWidth>
                 <InputLabel>{this.state.universityLabel}</InputLabel>
                 <Select
                     value={this.state.university}
@@ -94,6 +94,7 @@ export class Index extends Component {
                             name="firstName"
                             value={this.state.firstName}
                             onChange={this.handleChange}
+                            fullWidth
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -103,6 +104,7 @@ export class Index extends Component {
                             name="lastName"
                             value={this.state.lastName}
                             onChange={this.handleChange}
+                            fullWidth
                         />
                     </Grid>
 
@@ -113,6 +115,7 @@ export class Index extends Component {
                             name="email"
                             value={this.state.email}
                             onChange={this.handleChange}
+                            fullWidth
                         />
                     </Grid>
 
@@ -128,6 +131,7 @@ export class Index extends Component {
                             type="password"
                             value={this.state.password}
                             onChange={this.handleChange}
+                            fullWidth
                         />
                     </Grid>
 
