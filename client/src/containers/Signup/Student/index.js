@@ -99,6 +99,13 @@ export class Index extends Component {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
+                                    {this.props.error.message && (
+                                        <p className="red-text">
+                                            {this.props.error.message}
+                                        </p>
+                                    )}
+                                </Grid>
+                                <Grid item xs={12}>
                                     <Button
                                         type="submit"
                                         variant="outlined"
@@ -118,10 +125,13 @@ export class Index extends Component {
 }
 
 Index.propTypes = {
-    signup: PropTypes.func.isRequired
+    signup: PropTypes.func.isRequired,
+    error: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    error: state.error
+})
 
 const mapDispatchToProps = {
     signup
