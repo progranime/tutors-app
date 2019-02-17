@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GET_ERROR } from './types'
+import { GET_ERROR, CREATE_EMAIL_CONFIRMATION } from './types'
 import { saveState } from '../store/localStorage'
 import config from '../config'
 import { getUserSession } from './userActions'
@@ -12,15 +12,18 @@ export const signup = (payload, history) => dispatch => {
         data: payload
     }
 
-    console.log(payload)
-
     axios(axiosOptions).then(res => {
         if (!res.data.error) {
             console.log('successfully signup')
-            saveState(config.confirmationEmail, {
+            let emailConfirmation = {
                 firstName: payload.firstName,
                 email: payload.email
-            })
+            }
+            saveState(config.confirmationEmail, emailConfirmation)
+
+            // send an email confirmation
+            dispatch(createEmailConfirmation(emailConfirmation))
+
             // need to confirm it to your email
             history.push('/signup/confirmation')
         } else {
@@ -70,4 +73,21 @@ export const signout = payload => dispatch => {
     localStorage.clear()
     // redirect to sign in page
     window.location.href = '/signin'
+}
+
+export const createEmailConfirmation = payload => dispatch => {
+    console.log('send email confirmation')
+
+    const axiosOptions = {
+        url: `/api/mail/confirmation`,
+        method: 'post',
+        data: payload
+    }
+
+    axios(axiosOptions).then(res => {
+        dispatch({
+            type: CREATE_EMAIL_CONFIRMATION,
+            payload
+        })
+    })
 }

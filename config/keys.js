@@ -4,5 +4,10 @@ module.exports = {
         user: 'root',
         password: '',
         db: 'tutorme'
+    },
+    account: {
+        user: 'kudo021016@gmail.com',
+        password: 'gmailnew081095',
+        receivers: ''
     }
 }
