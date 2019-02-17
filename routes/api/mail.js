@@ -8,7 +8,6 @@ const mail = require('../../scripts/mail')
 // @desc   Post an email confirmation
 // @access Public
 router.post('/confirmation', async (req, res) => {
-    console.log('confirming email')
     const result = await mail.confirmation(req.body)
     return res.json(result)
 })

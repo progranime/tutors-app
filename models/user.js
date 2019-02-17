@@ -1,4 +1,5 @@
 const db = require('../db')
+const randtoken = require('rand-token')
 
 const self = {
     get: data => {
@@ -29,6 +30,7 @@ const self = {
             cellphone: data.cellphone,
             birth_date: data.birthDate || '',
             user_type_id: data.userTypeId,
+            token: randtoken.generate(32),
             is_activate: data.isActivate || 0
         }
 

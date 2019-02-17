@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer')
 
 const { account } = require('../config/keys')
+const user = require('../models/user')
 
 const self = {
     init: (html, receiver) => {
@@ -40,9 +41,20 @@ const self = {
             })
         })
     },
-    confirmation: data => {
-        let html = `<p>Please click this link to confirm your email</p>`
+    confirmation: async data => {
+        // get the email token and id
+        const userData = await user.get({
+            email: data.email
+        })
 
+        let html = `
+            <h1>This is to confirm your email</h1>
+            <p>Please click <a href="http://localhost:3002/signup/confirmation?token=${
+                userData[0].token
+            }&id=${
+            userData[0].id
+        }" target="_blank">here</a> to activate your email</a>
+        `
         self.init(html, data.email)
     }
 }

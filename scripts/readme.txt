@@ -1,1 +1,0 @@
-Can add here your custom javascript to be modular and easy to debug.
