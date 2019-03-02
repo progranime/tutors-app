@@ -2,9 +2,9 @@ import axios from 'axios'
 
 import { GET_ALL_QUALIFICATION } from './types'
 
-export const getAllNationality = payload => dispatch => {
+export const getAllQualification = payload => dispatch => {
     const axiosOptions = {
-        url: `/api/nationality/all`,
+        url: `/api/qualification/all`,
         method: 'get'
     }
 

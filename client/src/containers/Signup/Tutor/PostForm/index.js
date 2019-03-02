@@ -15,7 +15,7 @@ import queryString from 'query-string'
 import { getUser } from '../../../../actions/userActions'
 import { getAllGender } from '../../../../actions/genderActions'
 import { getAllNationality } from '../../../../actions/nationalityActions'
-import { stat } from 'fs'
+import { getAllQualification } from '../../../../actions/qualificationActions'
 
 export class Index extends Component {
     state = {
@@ -24,7 +24,8 @@ export class Index extends Component {
         genderId: '',
         birthDate: '',
         nationalityId: '',
-        cellphone: ''
+        cellphone: '',
+        qualificationId: ''
     }
 
     handleChange = e => {
@@ -83,12 +84,38 @@ export class Index extends Component {
         )
     }
 
+    renderQaulificationOptions = () => {
+        let options =
+            this.props.qualification.results &&
+            this.props.qualification.results.map(qualification => (
+                <MenuItem value={qualification.id} key={qualification.id}>
+                    {qualification.name}
+                </MenuItem>
+            ))
+
+        return (
+            <FormControl fullWidth>
+                <InputLabel>Qualification</InputLabel>
+                <Select
+                    value={this.state.qualificationId}
+                    onChange={this.handleChange}
+                    inputProps={{
+                        name: 'qualificationId'
+                    }}
+                >
+                    {options}
+                </Select>
+            </FormControl>
+        )
+    }
+
     componentDidMount() {
         const searchQuery = queryString.parse(this.props.location.search)
 
         this.props.getUser({ id: searchQuery.id })
         this.props.getAllGender()
         this.props.getAllNationality()
+        this.props.getAllQualification()
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -156,7 +183,7 @@ export class Index extends Component {
                                 id="birthDate"
                                 label="Date of Birth"
                                 name="birthDate"
-                                value={this.state.birthDate}
+                                value={this.state.birthDate || ''}
                                 type="date"
                                 onChange={this.handleChange}
                                 fullWidth
@@ -171,7 +198,7 @@ export class Index extends Component {
                                 id="cellphone"
                                 label="Cellphone Number"
                                 name="cellphone"
-                                value={this.state.cellphone}
+                                value={this.state.cellphone || ''}
                                 onChange={this.handleChange}
                                 fullWidth
                             />
@@ -186,13 +213,15 @@ export class Index extends Component {
 const mapStateToProps = state => ({
     gender: state.gender,
     nationality: state.nationality,
-    user: state.user
+    user: state.user,
+    qualification: state.qualification
 })
 
 const mapDispatchToProps = {
     getAllGender,
     getAllNationality,
-    getUser
+    getUser,
+    getAllQualification
 }
 
 export default connect(
