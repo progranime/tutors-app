@@ -116,6 +116,8 @@ export const activateEmail = (payload, history) => dispatch => {
             history.push('/signin')
 
         // if tutor redirect to form again to complete the registration
-        history.push('/signup/tutor/')
+        history.push(
+            `/signup/tutor/post-form?id=${payload.id}&token=${payload.token}`
+        )
     })
 }

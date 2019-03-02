@@ -7,6 +7,8 @@ const path = require('path')
 const user = require('./routes/api/user')
 const university = require('./routes/api/university')
 const mail = require('./routes/api/mail')
+const gender = require('./routes/api/gender')
+const nationality = require('./routes/api/nationality')
 
 // express middleware
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -16,6 +18,8 @@ app.use(bodyParser.json())
 app.use('/api/user', user)
 app.use('/api/university', university)
 app.use('/api/mail', mail)
+app.use('/api/gender', gender)
+app.use('/api/nationality', nationality)
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
