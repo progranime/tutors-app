@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import {
     Grid,
     Button,
@@ -8,12 +10,99 @@ import {
     MenuItem,
     InputLabel
 } from '@material-ui/core'
+import queryString from 'query-string'
+
+import { getUser } from '../../../../actions/userActions'
+import { getAllGender } from '../../../../actions/genderActions'
+import { getAllNationality } from '../../../../actions/nationalityActions'
+import { stat } from 'fs'
 
 export class Index extends Component {
+    state = {
+        firstName: null,
+        lastName: '',
+        genderId: '',
+        birthDate: '',
+        nationalityId: '',
+        cellphone: ''
+    }
+
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+
+    renderGenderOptions = () => {
+        let options =
+            this.props.gender.results &&
+            this.props.gender.results.map(gender => (
+                <MenuItem value={gender.id} key={gender.id}>
+                    {gender.name}
+                </MenuItem>
+            ))
+
+        return (
+            <FormControl fullWidth>
+                <InputLabel>Gender</InputLabel>
+                <Select
+                    value={this.state.genderId}
+                    onChange={this.handleChange}
+                    inputProps={{
+                        name: 'genderId'
+                    }}
+                >
+                    {options}
+                </Select>
+            </FormControl>
+        )
+    }
+
+    renderNationalityOptions = () => {
+        let options =
+            this.props.nationality.results &&
+            this.props.nationality.results.map(nationality => (
+                <MenuItem value={nationality.id} key={nationality.id}>
+                    {nationality.name}
+                </MenuItem>
+            ))
+
+        return (
+            <FormControl fullWidth>
+                <InputLabel>Nationality</InputLabel>
+                <Select
+                    value={this.state.nationalityId}
+                    onChange={this.handleChange}
+                    inputProps={{
+                        name: 'nationalityId'
+                    }}
+                >
+                    {options}
+                </Select>
+            </FormControl>
+        )
+    }
+
+    componentDidMount() {
+        const searchQuery = queryString.parse(this.props.location.search)
+
+        this.props.getUser({ id: searchQuery.id })
+        this.props.getAllGender()
+        this.props.getAllNationality()
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (
+            props.user.result.first_name !== state.firstName ||
+            props.user.result.last_name !== state.lastName
+        ) {
+            return {
+                firstName: state.firstName || props.user.result.first_name,
+                lastName: state.lastName || props.user.result.last_name
+            }
+        }
+
+        return null
     }
 
     render() {
@@ -38,7 +127,7 @@ export class Index extends Component {
                                 id="firstName"
                                 label="First Name"
                                 name="firstName"
-                                value=""
+                                value={this.state.firstName || ''}
                                 onChange={this.handleChange}
                                 fullWidth
                             />
@@ -48,7 +137,41 @@ export class Index extends Component {
                                 id="lastName"
                                 label="Last Name"
                                 name="lastName"
-                                value=""
+                                value={this.state.lastName || ''}
+                                onChange={this.handleChange}
+                                fullWidth
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            {this.renderGenderOptions()}
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            {this.renderNationalityOptions()}
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                id="birthDate"
+                                label="Date of Birth"
+                                name="birthDate"
+                                value={this.state.birthDate}
+                                type="date"
+                                onChange={this.handleChange}
+                                fullWidth
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                id="cellphone"
+                                label="Cellphone Number"
+                                name="cellphone"
+                                value={this.state.cellphone}
                                 onChange={this.handleChange}
                                 fullWidth
                             />
@@ -60,4 +183,19 @@ export class Index extends Component {
     }
 }
 
-export default Index
+const mapStateToProps = state => ({
+    gender: state.gender,
+    nationality: state.nationality,
+    user: state.user
+})
+
+const mapDispatchToProps = {
+    getAllGender,
+    getAllNationality,
+    getUser
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Index)

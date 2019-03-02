@@ -20,6 +20,14 @@ router.post('/signin', async (req, res) => {
     return res.json(result)
 })
 
+// @router Get api/user/profile/:id
+// @desc   Get specific user information
+// @access Public
+router.get('/profile/:id', async (req, res) => {
+    const result = await user.get({ id: req.params.id })
+    return res.json(result[0])
+})
+
 // @router Post api/user/profile
 // @desc   Post user information
 // @access Public

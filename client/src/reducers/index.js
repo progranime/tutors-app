@@ -4,10 +4,14 @@ import userReducer from './userReducer'
 import errorReducer from './errorReducer'
 import universityReducer from './universityReducer'
 import authReducer from './authReducer'
+import genderReducer from './genderReducer'
+import nationalityReducer from './nationalityReducer'
 
 export default combineReducers({
     user: userReducer,
     error: errorReducer,
     university: universityReducer,
-    auth: authReducer
+    auth: authReducer,
+    gender: genderReducer,
+    nationality: nationalityReducer
 })

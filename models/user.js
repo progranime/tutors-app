@@ -3,8 +3,9 @@ const randtoken = require('rand-token')
 
 const self = {
     get: data => {
-        let GET = `SELECT * FROM user WHERE email = ?`
+        let GET = `SELECT * FROM user WHERE id = ? OR email = ?`
         let formData = {
+            id: data.id,
             email: data.email
         }
 
@@ -12,11 +13,15 @@ const self = {
             db.getConnection((err, connection) => {
                 if (err) console.log(err)
 
-                connection.query(GET, [formData.email], (err, results) => {
-                    if (err) console.log(err)
-                    resolve(results)
-                    connection.release()
-                })
+                connection.query(
+                    GET,
+                    [formData.id, formData.email],
+                    (err, results) => {
+                        if (err) console.log(err)
+                        resolve(results)
+                        connection.release()
+                    }
+                )
             })
         })
     },

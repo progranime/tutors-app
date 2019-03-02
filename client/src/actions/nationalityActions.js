@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { GET_ALL_NATIONALITY } from './types'
 
-export const getAllGender = payload => dispatch => {
+export const getAllNationality = payload => dispatch => {
     const axiosOptions = {
         url: `/api/nationality/all`,
         method: 'get'
