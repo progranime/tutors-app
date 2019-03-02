@@ -20,8 +20,12 @@ export const signup = (payload, history) => dispatch => {
         if (!res.data.error) {
             let emailConfirmation = {
                 firstName: payload.firstName,
-                email: payload.email
+                email: payload.email,
+                userTypeId: payload.userTypeId
             }
+
+            console.log(emailConfirmation)
+
             saveState(config.confirmationEmail, emailConfirmation)
 
             // send an email confirmation
@@ -106,6 +110,12 @@ export const activateEmail = (payload, history) => dispatch => {
             }
         })
 
-        history.push('/signin')
+        // if the type of user is parent or student
+        // redirect ot signin
+        if (payload.userTypeId === 1 || payload.userTypeId === 2)
+            history.push('/signin')
+
+        // if tutor redirect to form again to complete the registration
+        history.push('/signup/tutor/')
     })
 }

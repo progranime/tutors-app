@@ -26,7 +26,8 @@ export class Index extends Component {
             this.props.activateEmail(
                 {
                     id: searchQuery.id,
-                    token: searchQuery.token
+                    token: searchQuery.token,
+                    userTypeId: searchQuery.userTypeId
                 },
                 this.props.history
             )

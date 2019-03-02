@@ -30,6 +30,7 @@ const self = {
             cellphone: data.cellphone,
             birth_date: data.birthDate || '',
             user_type_id: data.userTypeId,
+            university_id: data.universityId,
             token: randtoken.generate(32),
             is_activate: data.isActivate || 0
         }

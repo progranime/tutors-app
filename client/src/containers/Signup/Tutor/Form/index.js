@@ -14,13 +14,14 @@ import { connect } from 'react-redux'
 
 import { SignupHeader, SignupBody } from '../../../../components/Core/Signup'
 import { getAllUniversity } from '../../../../actions/universityActions'
+import { signup } from '../../../../actions/authActions'
 
 export class Index extends Component {
     state = {
         firstName: '',
         lastName: '',
         email: '',
-        university: '',
+        universityId: '',
         password: '',
         userTypeId: 3,
         universityLabel: ''
@@ -35,6 +36,7 @@ export class Index extends Component {
     handleSubmit = e => {
         e.preventDefault()
         console.log(this.state)
+        this.props.signup(this.state, this.props.history)
     }
 
     componentDidMount() {
@@ -71,10 +73,10 @@ export class Index extends Component {
             <FormControl fullWidth>
                 <InputLabel>{this.state.universityLabel}</InputLabel>
                 <Select
-                    value={this.state.university}
+                    value={this.state.universityId}
                     onChange={this.handleChange}
                     inputProps={{
-                        name: 'university'
+                        name: 'universityId'
                     }}
                 >
                     {options}
@@ -167,7 +169,8 @@ export class Index extends Component {
 
 Index.propTypes = {
     university: PropTypes.object.isRequired,
-    getAllUniversity: PropTypes.func.isRequired
+    getAllUniversity: PropTypes.func.isRequired,
+    signup: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -175,7 +178,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    getAllUniversity
+    getAllUniversity,
+    signup
 }
 
 export default connect(

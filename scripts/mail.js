@@ -48,11 +48,11 @@ const self = {
         })
 
         let html = `
-            <h1>This is to confirm your email</h1>
-            <p>Please click <a href="http://localhost:3002/signup/confirmation?token=${
+            <h1>Thanks for signing up!</h1>
+            <p>To activate your account, Please click this confirmation link <a href="http://localhost:3002/signup/confirmation?token=${
                 userData[0].token
-            }&id=${
-            userData[0].id
+            }&id=${userData[0].id}&userTypeId=${
+            userData[0].user_type_id
         }" target="_blank">here</a> to activate your email</a>
         `
         self.init(html, data.email)
