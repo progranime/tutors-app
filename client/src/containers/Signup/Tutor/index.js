@@ -14,7 +14,7 @@ export class Index extends Component {
                         <Button
                             variant="outlined"
                             component={Link}
-                            to="/signup/tutor/form?type=student"
+                            to="/signup/tutor/pre-form?type=student"
                             size="large"
                             fullWidth={true}
                             className="p-5 mb-4"
@@ -24,7 +24,7 @@ export class Index extends Component {
                         <Button
                             variant="outlined"
                             component={Link}
-                            to="/signup/tutor/form?type=graduated"
+                            to="/signup/tutor/pre-form?type=graduated"
                             size="large"
                             fullWidth={true}
                             className="p-5"

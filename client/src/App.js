@@ -12,7 +12,8 @@ const Signup = lazy(() => import('./routes/Signup'))
 const SignupParent = lazy(() => import('./routes/Signup/Parent'))
 const SignupStudent = lazy(() => import('./routes/Signup/Student'))
 const SignupTutor = lazy(() => import('./routes/Signup/Tutor'))
-const SignupTutorForm = lazy(() => import('./routes/Signup/Tutor/Form'))
+const SignupTutorPreForm = lazy(() => import('./routes/Signup/Tutor/PreForm'))
+const SignupTutorPostForm = lazy(() => import('./routes/Signup/Tutor/PostForm'))
 const SignupConfirmation = lazy(() => import('./routes/Signup/Confirmation'))
 
 class App extends Component {
@@ -67,9 +68,17 @@ class App extends Component {
 
                                 <Route
                                     exact
-                                    path="/signup/tutor/form"
+                                    path="/signup/tutor/pre-form"
                                     component={props => (
-                                        <SignupTutorForm {...props} />
+                                        <SignupTutorPreForm {...props} />
+                                    )}
+                                />
+
+                                <Route
+                                    exact
+                                    path="/signup/tutor/post-form"
+                                    component={props => (
+                                        <SignupTutorPostForm {...props} />
                                     )}
                                 />
 

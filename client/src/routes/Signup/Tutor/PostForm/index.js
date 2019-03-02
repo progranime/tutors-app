@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
 import { Container } from '../../../../components/Layout'
-import SignupTutorForm from '../../../../containers/Signup/Tutor/Form'
+import SignupTutorPostForm from '../../../../containers/Signup/Tutor/PostForm'
 
 export class Index extends Component {
     render() {
         return (
             <Container>
-                <SignupTutorForm {...this.props} />
+                <SignupTutorPostForm {...this.props} />
             </Container>
         )
     }
