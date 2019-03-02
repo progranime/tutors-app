@@ -1,6 +1,8 @@
 import { GET_ALL_UNIVERSITY } from '../actions/types'
 
-const initialState = {}
+const initialState = {
+    results: []
+}
 
 const universityReducer = (state = initialState, { type, payload }) => {
     switch (type) {

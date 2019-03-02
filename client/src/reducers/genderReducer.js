@@ -1,6 +1,8 @@
 import { GET_ALL_GENDER } from '../actions/types'
 
-const initialState = {}
+const initialState = {
+    results: []
+}
 
 const genderReducer = (state = initialState, { type, payload }) => {
     switch (type) {

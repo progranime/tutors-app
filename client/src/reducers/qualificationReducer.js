@@ -1,12 +1,12 @@
-import { GET_ALL_NATIONALITY } from '../actions/types'
+import { GET_ALL_GENDER } from '../actions/types'
 
 const initialState = {
     results: []
 }
 
-const nationalityReducer = (state = initialState, { type, payload }) => {
+const qualificationReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case GET_ALL_NATIONALITY:
+        case GET_ALL_GENDER:
             return {
                 ...state,
                 results: payload
@@ -16,4 +16,4 @@ const nationalityReducer = (state = initialState, { type, payload }) => {
     }
 }
 
-export default nationalityReducer
+export default qualificationReducer
