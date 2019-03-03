@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GET_USER, GET_USER_SESSION } from './types'
+import { GET_USER, GET_USER_SESSION, UPDATE_USER } from './types'
 
 export const getUserSession = payload => dispatch => {
     const axiosOptions = {
@@ -30,6 +30,25 @@ export const getUser = payload => dispatch => {
         dispatch({
             type: GET_USER,
             payload: res.data
+        })
+    })
+}
+
+export const updateUser = payload => dispatch => {
+    console.log('update user')
+    const axiosOptions = {
+        url: `/api/user/profile/${payload.id}/update`,
+        method: 'put',
+        data: payload
+    }
+
+    axios(axiosOptions).then(res => {
+        console.log(res.data)
+        dispatch({
+            type: UPDATE_USER,
+            payload: {
+                message: 'Successfully Updated User'
+            }
         })
     })
 }

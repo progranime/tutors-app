@@ -28,6 +28,14 @@ router.get('/profile/:id', async (req, res) => {
     return res.json(result[0])
 })
 
+// @router Put api/user/profile/:id/update
+// @desc   Put specific user information
+// @access Public
+router.put('/profile/:id/update', async (req, res) => {
+    const result = await user.update(req.body)
+    return res.json(result)
+})
+
 // @router Post api/user/profile
 // @desc   Post user information
 // @access Public

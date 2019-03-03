@@ -61,7 +61,37 @@ const self = {
             })
         })
     },
-    update: () => {},
+    update: data => {
+        let UPDATE = `UPDATE user SET ? WHERE id = ? AND token = ?`
+        let formData = {
+            first_name: data.firstName,
+            last_name: data.lastName,
+            gender_id: data.genderId,
+            birth_date: data.birthDate || '',
+            nationality_id: data.nationalityId,
+            cellphone: data.cellphone,
+            qualification_id: data.qualificationId,
+            course_title: data.courseTitle,
+            start_year: data.startYear,
+            end_year: data.endYear
+        }
+
+        return new Promise(resolve => {
+            db.getConnection((err, connection) => {
+                if (err) console.log(err)
+
+                connection.query(
+                    UPDATE,
+                    [formData, data.id, data.token],
+                    (err, results) => {
+                        if (err) console.log(err)
+                        resolve(results)
+                        connection.release()
+                    }
+                )
+            })
+        })
+    },
     destroy: () => {},
     emailExists: data => {
         let SELECT = `SELECT * FROM user WHERE email = ?`

@@ -12,13 +12,15 @@ import {
 } from '@material-ui/core'
 import queryString from 'query-string'
 
-import { getUser } from '../../../../actions/userActions'
+import { getUser, updateUser } from '../../../../actions/userActions'
 import { getAllGender } from '../../../../actions/genderActions'
 import { getAllNationality } from '../../../../actions/nationalityActions'
 import { getAllQualification } from '../../../../actions/qualificationActions'
 
 export class Index extends Component {
     state = {
+        id: '',
+        token: '',
         firstName: null,
         lastName: '',
         genderId: '',
@@ -40,6 +42,7 @@ export class Index extends Component {
     handleSubmit = e => {
         e.preventDefault()
         console.log(this.state)
+        this.props.updateUser(this.state)
     }
 
     renderGenderOptions = () => {
@@ -119,6 +122,11 @@ export class Index extends Component {
 
     componentDidMount() {
         const searchQuery = queryString.parse(this.props.location.search)
+
+        this.setState({
+            id: searchQuery.id,
+            token: searchQuery.token
+        })
 
         this.props.getUser({ id: searchQuery.id })
         this.props.getAllGender()
@@ -288,6 +296,18 @@ export class Index extends Component {
     }
 }
 
+Index.propTypes = {
+    gender: PropTypes.object.isRequired,
+    nationality: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+    qualification: PropTypes.object.isRequired,
+    getAllGender: PropTypes.func.isRequired,
+    getAllNationality: PropTypes.func.isRequired,
+    getUser: PropTypes.func.isRequired,
+    getAllQualification: PropTypes.func.isRequired,
+    updateUser: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
     gender: state.gender,
     nationality: state.nationality,
@@ -299,7 +319,8 @@ const mapDispatchToProps = {
     getAllGender,
     getAllNationality,
     getUser,
-    getAllQualification
+    getAllQualification,
+    updateUser
 }
 
 export default connect(
