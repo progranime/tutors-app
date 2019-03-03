@@ -43,7 +43,6 @@ export const updateUser = payload => dispatch => {
     }
 
     axios(axiosOptions).then(res => {
-        console.log(res.data)
         dispatch({
             type: UPDATE_USER,
             payload: {

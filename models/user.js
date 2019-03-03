@@ -63,6 +63,14 @@ const self = {
     },
     update: data => {
         let UPDATE = `UPDATE user SET ? WHERE id = ? AND token = ?`
+
+        // convert birthdate format to DD-MM-YYYY
+        /* let date = new Date(data.birthDate)
+        let birthDate = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
+        console.log(
+            `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
+        ) */
+
         let formData = {
             first_name: data.firstName,
             last_name: data.lastName,
