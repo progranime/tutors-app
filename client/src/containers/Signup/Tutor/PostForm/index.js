@@ -120,6 +120,124 @@ export class Index extends Component {
         )
     }
 
+    renderPersonalDetailsForm = () => {
+        return (
+            <div>
+                <h6>Personal Details</h6>
+
+                <Grid container spacing={24}>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            id="firstName"
+                            label="First Name"
+                            name="firstName"
+                            value={this.state.firstName || ''}
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            id="lastName"
+                            label="Last Name"
+                            name="lastName"
+                            value={this.state.lastName || ''}
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        {this.renderGenderOptions()}
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        {this.renderNationalityOptions()}
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            id="birthDate"
+                            label="Date of Birth"
+                            name="birthDate"
+                            value={this.state.birthDate || ''}
+                            type="date"
+                            onChange={this.handleChange}
+                            fullWidth
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            id="cellphone"
+                            label="Cellphone Number"
+                            name="cellphone"
+                            value={this.state.cellphone || ''}
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                    </Grid>
+                </Grid>
+            </div>
+        )
+    }
+
+    renderEducationForm = () => {
+        return (
+            <div>
+                <p>What did you study at?</p>
+                <Grid container spacing={24}>
+                    <Grid item xs={12} sm={6}>
+                        {this.renderQaulificationOptions()}
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            id="courseTitle"
+                            label="Course Title"
+                            name="courseTitle"
+                            value={this.state.courseTitle || ''}
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            id="startYear"
+                            label="Start Year"
+                            name="startYear"
+                            value={this.state.startYear || ''}
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            id="endYear"
+                            label="End Year"
+                            name="endYear"
+                            value={this.state.endYear || ''}
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                    </Grid>
+                </Grid>
+            </div>
+        )
+    }
+
+    renderSubjectForm = () => {
+        return (
+            <div>
+                <p>What subjects you want to tutor?</p>
+            </div>
+        )
+    }
+
     componentDidMount() {
         const searchQuery = queryString.parse(this.props.location.search)
 
@@ -180,111 +298,9 @@ export class Index extends Component {
                     </p>
                 </div>
 
-                <div>
-                    <h6>Personal Details</h6>
-
-                    <Grid container spacing={24}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                id="firstName"
-                                label="First Name"
-                                name="firstName"
-                                value={this.state.firstName || ''}
-                                onChange={this.handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                id="lastName"
-                                label="Last Name"
-                                name="lastName"
-                                value={this.state.lastName || ''}
-                                onChange={this.handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} sm={6}>
-                            {this.renderGenderOptions()}
-                        </Grid>
-
-                        <Grid item xs={12} sm={6}>
-                            {this.renderNationalityOptions()}
-                        </Grid>
-
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                id="birthDate"
-                                label="Date of Birth"
-                                name="birthDate"
-                                value={this.state.birthDate || ''}
-                                type="date"
-                                onChange={this.handleChange}
-                                fullWidth
-                                InputLabelProps={{
-                                    shrink: true
-                                }}
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                id="cellphone"
-                                label="Cellphone Number"
-                                name="cellphone"
-                                value={this.state.cellphone || ''}
-                                onChange={this.handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-                    </Grid>
-                </div>
-
-                <div>
-                    <p>What did you study at?</p>
-                    <Grid container spacing={24}>
-                        <Grid item xs={12} sm={6}>
-                            {this.renderQaulificationOptions()}
-                        </Grid>
-
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                id="courseTitle"
-                                label="Course Title"
-                                name="courseTitle"
-                                value={this.state.courseTitle || ''}
-                                onChange={this.handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                id="startYear"
-                                label="Start Year"
-                                name="startYear"
-                                value={this.state.startYear || ''}
-                                onChange={this.handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                id="endYear"
-                                label="End Year"
-                                name="endYear"
-                                value={this.state.endYear || ''}
-                                onChange={this.handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-                    </Grid>
-                </div>
-
-                <div>
-                    <p>What subjects you want to tutor?</p>
-                </div>
+                {this.renderPersonalDetailsForm()}
+                {this.renderEducationForm()}
+                {this.renderSubjectForm()}
 
                 <Grid item xs={12}>
                     <Button type="submit" variant="outlined" className="p-2">
