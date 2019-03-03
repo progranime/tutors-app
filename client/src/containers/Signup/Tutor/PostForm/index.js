@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core'
 import queryString from 'query-string'
 
+import { Stepper } from '../../../../components/UI'
 import { getUser, updateUser } from '../../../../actions/userActions'
 import { getAllGender } from '../../../../actions/genderActions'
 import { getAllNationality } from '../../../../actions/nationalityActions'
@@ -41,8 +42,7 @@ export class Index extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log(this.state)
-        this.props.updateUser(this.state)
+        this.props.updateUser(this.state, this.props.history)
     }
 
     renderGenderOptions = () => {
@@ -123,6 +123,16 @@ export class Index extends Component {
     renderPersonalDetailsForm = () => {
         return (
             <div>
+                <div>
+                    <h4>
+                        Thanks for signing up! Please complete your registration
+                    </h4>
+                    <p>
+                        Once you submit these details, we will review them and
+                        progress your application to the next stage
+                    </p>
+                </div>
+
                 <h6>Personal Details</h6>
 
                 <Grid container spacing={24}>
@@ -234,6 +244,17 @@ export class Index extends Component {
         return (
             <div>
                 <p>What subjects you want to tutor?</p>
+
+                <Grid item xs={12} className="my-4 center-align">
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className="p-2"
+                    >
+                        Submit
+                    </Button>
+                </Grid>
             </div>
         )
     }
@@ -287,26 +308,12 @@ export class Index extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <h4>
-                        Thanks for signing up! Please complete your registration
-                    </h4>
-                    <p>
-                        Once you submit these details, we will review them and
-                        progress your application to the next stage
-                    </p>
-                </div>
-
-                {this.renderPersonalDetailsForm()}
-                {this.renderEducationForm()}
-                {this.renderSubjectForm()}
-
-                <Grid item xs={12}>
-                    <Button type="submit" variant="outlined" className="p-2">
-                        Submit
-                    </Button>
-                </Grid>
+            <form onSubmit={this.handleSubmit} className="my-4">
+                <Stepper
+                    step1={this.renderPersonalDetailsForm()}
+                    step2={this.renderEducationForm()}
+                    step3={this.renderSubjectForm()}
+                />
             </form>
         )
     }

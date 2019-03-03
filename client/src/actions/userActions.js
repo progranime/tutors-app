@@ -34,7 +34,7 @@ export const getUser = payload => dispatch => {
     })
 }
 
-export const updateUser = payload => dispatch => {
+export const updateUser = (payload, history) => dispatch => {
     console.log('update user')
     const axiosOptions = {
         url: `/api/user/profile/${payload.id}/update`,
@@ -49,5 +49,7 @@ export const updateUser = payload => dispatch => {
                 message: 'Successfully Updated User'
             }
         })
+
+        // history.push('/signin')
     })
 }
