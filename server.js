@@ -10,6 +10,8 @@ const mail = require('./routes/api/mail')
 const gender = require('./routes/api/gender')
 const nationality = require('./routes/api/nationality')
 const qualification = require('./routes/api/qualification')
+const academic = require('./routes/api/academic')
+const admission = require('./routes/api/admission')
 
 // express middleware
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -22,6 +24,8 @@ app.use('/api/mail', mail)
 app.use('/api/gender', gender)
 app.use('/api/nationality', nationality)
 app.use('/api/qualification', qualification)
+app.use('/api/academic', academic)
+app.use('/api/admission', admission)
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

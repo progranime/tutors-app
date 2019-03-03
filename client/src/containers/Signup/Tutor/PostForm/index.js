@@ -205,6 +205,51 @@ export class Index extends Component {
                         </Grid>
                     </Grid>
                 </div>
+
+                <div>
+                    <p>What did you study at?</p>
+                    <Grid container spacing={24}>
+                        <Grid item xs={12} sm={6}>
+                            {this.renderQaulificationOptions()}
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                id="courseTitle"
+                                label="Course Title"
+                                name="courseTitle"
+                                value={this.state.courseTitle || ''}
+                                onChange={this.handleChange}
+                                fullWidth
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                id="startYear"
+                                label="Start Year"
+                                name="startYear"
+                                value={this.state.startYear || ''}
+                                onChange={this.handleChange}
+                                fullWidth
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                id="endYear"
+                                label="End Year"
+                                name="endYear"
+                                value={this.state.endYear || ''}
+                                onChange={this.handleChange}
+                                fullWidth
+                            />
+                        </Grid>
+                    </Grid>
+                </div>
+
+                <div>
+                    <p>What subjects you want to tutor?</p>
+                </div>
             </div>
         )
     }
