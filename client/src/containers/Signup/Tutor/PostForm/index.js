@@ -25,13 +25,21 @@ export class Index extends Component {
         birthDate: '',
         nationalityId: '',
         cellphone: '',
-        qualificationId: ''
+        qualificationId: '',
+        courseTitle: '',
+        startYear: '',
+        endYear: ''
     }
 
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+
+    handleSubmit = e => {
+        e.preventDefault()
+        console.log(this.state)
     }
 
     renderGenderOptions = () => {
@@ -47,7 +55,7 @@ export class Index extends Component {
             <FormControl fullWidth>
                 <InputLabel>Gender</InputLabel>
                 <Select
-                    value={this.state.genderId}
+                    value={this.state.genderId || ''}
                     onChange={this.handleChange}
                     inputProps={{
                         name: 'genderId'
@@ -72,7 +80,7 @@ export class Index extends Component {
             <FormControl fullWidth>
                 <InputLabel>Nationality</InputLabel>
                 <Select
-                    value={this.state.nationalityId}
+                    value={this.state.nationalityId || ''}
                     onChange={this.handleChange}
                     inputProps={{
                         name: 'nationalityId'
@@ -97,7 +105,7 @@ export class Index extends Component {
             <FormControl fullWidth>
                 <InputLabel>Qualification</InputLabel>
                 <Select
-                    value={this.state.qualificationId}
+                    value={this.state.qualificationId || ''}
                     onChange={this.handleChange}
                     inputProps={{
                         name: 'qualificationId'
@@ -121,11 +129,30 @@ export class Index extends Component {
     static getDerivedStateFromProps(props, state) {
         if (
             props.user.result.first_name !== state.firstName ||
-            props.user.result.last_name !== state.lastName
+            props.user.result.last_name !== state.lastName ||
+            props.user.result.gender_id !== state.genderId ||
+            props.user.result.birth_date !== state.birthDate ||
+            props.user.result.nationality_id !== state.nationalityId ||
+            props.user.result.cellphone !== state.cellphone ||
+            props.user.result.qualification_id !== state.qualificationId ||
+            props.user.result.course_title !== state.courseTitle ||
+            props.user.result.start_year !== state.startYear ||
+            props.user.result.end_year !== state.endYear
         ) {
             return {
                 firstName: state.firstName || props.user.result.first_name,
-                lastName: state.lastName || props.user.result.last_name
+                lastName: state.lastName || props.user.result.last_name,
+                genderId: state.genderId || props.user.result.gender_id,
+                birthDate: state.birthDate || props.user.result.birth_date,
+                nationalityId:
+                    state.nationalityId || props.user.result.nationality_id,
+                cellphone: state.cellphone || props.user.result.cellphone,
+                qualificationId:
+                    state.qualificationId || props.user.result.qualification_id,
+                courseTitle:
+                    state.courseTitle || props.user.result.course_title,
+                startYear: state.startYear || props.user.result.start_year,
+                endYear: state.endYear || props.user.result.end_year
             }
         }
 
@@ -134,7 +161,7 @@ export class Index extends Component {
 
     render() {
         return (
-            <div>
+            <form onSubmit={this.handleSubmit}>
                 <div>
                     <h4>
                         Thanks for signing up! Please complete your registration
@@ -250,7 +277,13 @@ export class Index extends Component {
                 <div>
                     <p>What subjects you want to tutor?</p>
                 </div>
-            </div>
+
+                <Grid item xs={12}>
+                    <Button type="submit" variant="outlined" className="p-2">
+                        Submit
+                    </Button>
+                </Grid>
+            </form>
         )
     }
 }
