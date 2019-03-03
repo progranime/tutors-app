@@ -8,7 +8,8 @@ import {
     FormControl,
     Select,
     MenuItem,
-    InputLabel
+    InputLabel,
+    Paper
 } from '@material-ui/core'
 import queryString from 'query-string'
 
@@ -122,11 +123,11 @@ export class Index extends Component {
 
     renderPersonalDetailsForm = () => {
         return (
-            <div>
-                <div>
-                    <h4>
+            <Paper className="p-4 mt-4">
+                <div className="center-align">
+                    <h5>
                         Thanks for signing up! Please complete your registration
-                    </h4>
+                    </h5>
                     <p>
                         Once you submit these details, we will review them and
                         progress your application to the next stage
@@ -191,13 +192,13 @@ export class Index extends Component {
                         />
                     </Grid>
                 </Grid>
-            </div>
+            </Paper>
         )
     }
 
     renderEducationForm = () => {
         return (
-            <div>
+            <Paper className="p-4 mt-4">
                 <p>What did you study at?</p>
                 <Grid container spacing={24}>
                     <Grid item xs={12} sm={6}>
@@ -236,13 +237,13 @@ export class Index extends Component {
                         />
                     </Grid>
                 </Grid>
-            </div>
+            </Paper>
         )
     }
 
     renderSubjectForm = () => {
         return (
-            <div>
+            <Paper className="p-4 mt-4">
                 <p>What subjects you want to tutor?</p>
 
                 <Grid item xs={12} className="my-4 center-align">
@@ -255,7 +256,7 @@ export class Index extends Component {
                         Submit
                     </Button>
                 </Grid>
-            </div>
+            </Paper>
         )
     }
 
