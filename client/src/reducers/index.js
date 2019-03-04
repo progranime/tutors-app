@@ -7,6 +7,8 @@ import authReducer from './authReducer'
 import genderReducer from './genderReducer'
 import nationalityReducer from './nationalityReducer'
 import qualificationReducer from './qualificationReducer'
+import admissionReducer from './admissionReducer'
+import academicReducer from './academicReducer'
 
 export default combineReducers({
     user: userReducer,
@@ -15,5 +17,7 @@ export default combineReducers({
     auth: authReducer,
     gender: genderReducer,
     nationality: nationalityReducer,
-    qualification: qualificationReducer
+    qualification: qualificationReducer,
+    admission: admissionReducer,
+    academic: academicReducer
 })

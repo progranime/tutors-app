@@ -18,6 +18,8 @@ import { getUser, updateUser } from '../../../../actions/userActions'
 import { getAllGender } from '../../../../actions/genderActions'
 import { getAllNationality } from '../../../../actions/nationalityActions'
 import { getAllQualification } from '../../../../actions/qualificationActions'
+import { getAllAcademic } from '../../../../actions/academicActions'
+import { getAllAdmission } from '../../../../actions/admissionActions'
 
 export class Index extends Component {
     state = {
@@ -32,7 +34,11 @@ export class Index extends Component {
         qualificationId: '',
         courseTitle: '',
         startYear: '',
-        endYear: ''
+        endYear: '',
+        academicId: [],
+        academicHourlyRate: [],
+        admissionId: [],
+        admissionHourlyRate: []
     }
 
     handleChange = e => {
@@ -113,6 +119,31 @@ export class Index extends Component {
                     onChange={this.handleChange}
                     inputProps={{
                         name: 'qualificationId'
+                    }}
+                >
+                    {options}
+                </Select>
+            </FormControl>
+        )
+    }
+
+    renderAcademicOptions = () => {
+        let options =
+            this.props.academic.results &&
+            this.props.academic.results.map(academic => (
+                <MenuItem value={academic.id} key={academic.id}>
+                    {academic.name}
+                </MenuItem>
+            ))
+
+        return (
+            <FormControl fullWidth>
+                <InputLabel>Academic Subjects</InputLabel>
+                <Select
+                    value={this.state.academicId}
+                    onChange={this.handleChange}
+                    inputProps={{
+                        name: 'academicId'
                     }}
                 >
                     {options}
@@ -246,15 +277,31 @@ export class Index extends Component {
             <Paper className="p-4 mt-4">
                 <p>What subjects you want to tutor?</p>
 
-                <Grid item xs={12} className="my-4 center-align">
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        className="p-2"
-                    >
-                        Submit
-                    </Button>
+                <Grid container spacing={24}>
+                    <Grid item xs={12} sm={6}>
+                        {this.renderAcademicOptions()}
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            id="academicHourlyRate"
+                            label="Hourly Rate"
+                            name="academicHourlyRate"
+                            value={this.state.academicHourlyRate || []}
+                            onChange={this.handleChange}
+                            fullWidth
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} className="my-4 center-align">
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className="p-2"
+                        >
+                            Submit
+                        </Button>
+                    </Grid>
                 </Grid>
             </Paper>
         )
@@ -272,6 +319,8 @@ export class Index extends Component {
         this.props.getAllGender()
         this.props.getAllNationality()
         this.props.getAllQualification()
+        this.props.getAllAcademic()
+        this.props.getAllAdmission()
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -325,18 +374,24 @@ Index.propTypes = {
     nationality: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     qualification: PropTypes.object.isRequired,
+    academic: PropTypes.object.isRequired,
+    admission: PropTypes.object.isRequired,
     getAllGender: PropTypes.func.isRequired,
     getAllNationality: PropTypes.func.isRequired,
     getUser: PropTypes.func.isRequired,
     getAllQualification: PropTypes.func.isRequired,
-    updateUser: PropTypes.func.isRequired
+    updateUser: PropTypes.func.isRequired,
+    getAllAcademic: PropTypes.func.isRequired,
+    getAllAdmission: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
     gender: state.gender,
     nationality: state.nationality,
     user: state.user,
-    qualification: state.qualification
+    qualification: state.qualification,
+    academic: state.academic,
+    admission: state.admission
 })
 
 const mapDispatchToProps = {
@@ -344,7 +399,9 @@ const mapDispatchToProps = {
     getAllNationality,
     getUser,
     getAllQualification,
-    updateUser
+    updateUser,
+    getAllAcademic,
+    getAllAdmission
 }
 
 export default connect(

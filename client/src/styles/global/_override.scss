@@ -29,3 +29,7 @@ label {
 /* [class*='MuiFormControl-root-'] {
     width: 100%;
 } */
+
+[class*='MuiSelect-selectMenu'] {
+    padding: 20px 0 7px !important;
+}
