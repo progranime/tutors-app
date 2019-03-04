@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
@@ -35,10 +35,10 @@ export class Index extends Component {
         courseTitle: '',
         startYear: '',
         endYear: '',
-        academicId: [],
-        academicHourlyRate: [],
-        admissionId: [],
-        admissionHourlyRate: []
+        academicId: [1],
+        academicHourlyRate: [0],
+        admissionId: [1],
+        admissionHourlyRate: [0]
     }
 
     handleChange = e => {
@@ -47,9 +47,48 @@ export class Index extends Component {
         })
     }
 
+    /* handleChangeArray = (index, e) => {
+        let clone = this.state.academicHourlyRate.splice()
+        clone[index] = e.target.value
+
+        this.setState({
+            academicHourlyRate: [clone]
+        })
+    } */
+
     handleSubmit = e => {
         e.preventDefault()
         this.props.updateUser(this.state, this.props.history)
+    }
+
+    handleAddSubject = () => {
+        this.setState(
+            {
+                academicId: [...this.state.academicId, 1],
+                academicHourlyRate: [...this.state.academicHourlyRate, 0]
+            },
+            () => {
+                console.log(this.state.academicId)
+            }
+        )
+    }
+
+    handleRemoveSubject = index => {
+        console.log('index: ', index)
+        console.log('hey', this.state.academicId)
+
+        const academicId = [...this.state.academicId]
+        const academicHourlyRate = [...this.state.academicHourlyRate]
+
+        academicId.splice(index, 1)
+        academicHourlyRate.splice(index, 1)
+
+        if (index !== 0) {
+            this.setState({
+                academicId,
+                academicHourlyRate
+            })
+        }
     }
 
     renderGenderOptions = () => {
@@ -127,11 +166,12 @@ export class Index extends Component {
         )
     }
 
-    renderAcademicOptions = () => {
+    renderAcademicOptions = (id, index) => {
+        console.log(this.state.academicId[index])
         let options =
             this.props.academic.results &&
             this.props.academic.results.map(academic => (
-                <MenuItem value={academic.id} key={academic.id}>
+                <MenuItem value={id} key={index}>
                     {academic.name}
                 </MenuItem>
             ))
@@ -140,7 +180,7 @@ export class Index extends Component {
             <FormControl fullWidth>
                 <InputLabel>Academic Subjects</InputLabel>
                 <Select
-                    value={this.state.academicId}
+                    value={this.state.academicId[index]}
                     onChange={this.handleChange}
                     inputProps={{
                         name: 'academicId'
@@ -279,18 +319,45 @@ export class Index extends Component {
 
                 <Grid container spacing={24}>
                     <Grid item xs={12} sm={6}>
-                        {this.renderAcademicOptions()}
+                        {this.state.academicId.map((academic, index) => (
+                            <Fragment key={index}>
+                                {this.renderAcademicOptions(academic.id, index)}
+                            </Fragment>
+                        ))}
                     </Grid>
+
                     <Grid item xs={12} sm={6}>
-                        <TextField
-                            id="academicHourlyRate"
-                            label="Hourly Rate"
-                            name="academicHourlyRate"
-                            value={this.state.academicHourlyRate || []}
-                            onChange={this.handleChange}
-                            fullWidth
-                        />
+                        {this.state.academicHourlyRate.map((rate, index) => (
+                            <Grid container spacing={24} key={index}>
+                                <Grid item xs={index === 0 ? 12 : 10}>
+                                    <TextField
+                                        id="academicHourlyRate"
+                                        label="Hourly Rate"
+                                        name="academicHourlyRate"
+                                        value={
+                                            this.state.academicHourlyRate[index]
+                                        }
+                                        onChange={this.handleChange}
+                                        fullWidth
+                                    />
+                                </Grid>
+                                {index !== 0 && (
+                                    <Grid item xs={2}>
+                                        <Button
+                                            onClick={this.handleRemoveSubject.bind(
+                                                this,
+                                                index
+                                            )}
+                                        >
+                                            Remove
+                                        </Button>
+                                    </Grid>
+                                )}
+                            </Grid>
+                        ))}
                     </Grid>
+
+                    <Button onClick={this.handleAddSubject}>Add Subject</Button>
 
                     <Grid item xs={12} className="my-4 center-align">
                         <Button
